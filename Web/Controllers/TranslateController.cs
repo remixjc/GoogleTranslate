@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.NodeServices;
+using static Web.Common.Common;
 
 namespace Web.Controllers
 {            
@@ -19,9 +21,15 @@ namespace Web.Controllers
         }
             // GET: api/Translate
             [HttpGet]
-        public IEnumerable<string> Get()
+        public Dictionary<string, string> Get()
         {
-            return new string[] { "value1", "value2" };
+            Dictionary<string, string> lang = new Dictionary<string, string>();
+            var result = Enum.GetValues(typeof(Language)).OfType<Enum>();
+            foreach (var item in result)
+            {
+                lang.Add(item.ToString(), Common.Common.GetDescription(item));
+            }
+            return lang;
         }
 
         // GET: api/Translate/5
