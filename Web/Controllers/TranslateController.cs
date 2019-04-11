@@ -35,8 +35,15 @@ namespace Web.Controllers
         [HttpPost]
         public async Task<string> Post([FromForm] string fr)
         {
-            string result = await Common.Common.Translate(fr, "auto", Common.Common.Language.en_US.ToString(), _services);
-            return result;
+            try
+            {
+                string result = await Common.Common.Translate(fr, "auto", Common.Common.Language.en_US.ToString(), _services);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         // PUT: api/Translate/5

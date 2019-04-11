@@ -32,7 +32,7 @@ namespace Web.Common
             var BaseResultHtml = GetResultHtml(GoogleTransBaseUrl, cc, "");
             Regex re = new Regex(@"(?<=tkk:')(.*?)(?=')");
             string tkk = re.Match(BaseResultHtml).ToString();//在返回的HTML中正则匹配TKK的值  
-            string tk = await nodeServices.InvokeAsync<string>("./scripts/gettk", text, tkk);
+            string tk = await nodeServices.InvokeAsync<string>("./wwwroot/js/gettk", text, tkk);
             string googleTransUrl = "https://translate.google.cn/translate_a/single?client=t&sl=" + fromLang + "&tl=" + toLang + "&hl=en&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=1&tk=" + tk + "&q=" + HttpUtility.UrlEncode(text);
             var ResultHtml = GetResultHtml(googleTransUrl, cc, "https://translate.google.cn/");
             dynamic TempResult = Newtonsoft.Json.JsonConvert.DeserializeObject(ResultHtml);
