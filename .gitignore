@@ -1,5 +1,20 @@
-﻿################################################################################
-# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
-################################################################################
+﻿# git ignore file
+/backup/
+Nuget/
+bin/
+obj/
+.vscode/
+*.[pdb]
+*.suo
+*.user
+WeiXinMPSDK.zip
+WeiXinMPSDK_v1.zip
+bak.zip
+*.pdb
+*.tmp
 
-/.vs
+#/Tools/*
+*.DotSettings
+.vs
+applicationhost.config
+packages/
