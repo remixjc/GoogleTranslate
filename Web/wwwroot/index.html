@@ -10,52 +10,70 @@
     <script src="./js/index.js"></script>
 </head>
 <body style="padding-top:50px;">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="jumbotron">
+                    <h1>
+                        Google Translate Online
+                    </h1>
+                    <p>
+                        这是基于谷歌在线翻译的项目，仅供学习参考使用，切勿用于商业用途，再次声明：所有因为商业用途引起的纠纷概与本作者无关。
+                    </p>
+                    <form class="form-horizontal" action="api/Translate" method="post" target="iframeContent" style="padding:20px;">
+                        <fieldset>
+                            <div class="control-group">
+                                <!-- Textarea -->
+                                <label class="control-label">翻译内容</label> <select id="lang" name="lang"></select>
+                                <div class="controls">
+                                    <div class="textarea">
+                                        <textarea type="" class="" name="fr" style="width:100%"> </textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label"></label>
+
+                                <!-- Button -->
+                                <div class="controls" style="text-align:center">
+                                    <button class="btn btn-primary" type="submit">翻译(Translate)</button>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+
+                                <!-- Textarea -->
+                                <label class="control-label">翻译结果</label> <select id="tolang" name="tolang"></select>
+                                <div class="controls">
+                                    <div class="textarea">
+                                        <textarea type="" class="" style="width:100%" id="result" readonly="readonly"> </textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                    <iframe src="" frameborder="0" name="iframeContent" style="display: none;"></iframe>
+                </div>
+                <div class="alert alert-dismissable alert-info">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4>
+                        注意!
+                    </h4> <strong>警告：</strong> 本项目为开发学习使用，请勿用于商业用途，所有的违规行为与本人无关。
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container" style="width:100%; background-color:whitesmoke">
-        <form class="form-horizontal" action="api/Translate" method="post" target="iframeContent" style="padding:20px;">
-            <fieldset>
-                <div id="legend" class="" style="text-align:center;">
-                    <legend class="">Google Translate</legend>
-                </div>
-                <div class="control-group">
-                    <!-- Textarea -->
-                    <label class="control-label">翻译内容</label> <select id="lang" name="lang"></select>
-                    <div class="controls">
-                        <div class="textarea">
-                            <textarea type="" class="" name="fr" style="width:100%"> </textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="control-group">
-                    <label class="control-label"></label>
-
-                    <!-- Button -->
-                    <div class="controls" style="text-align:right">
-                        <button class="btn btn-success" type="submit">翻译(Translate)</button>
-                    </div>
-                </div>
-
-                <div class="control-group">
-
-                    <!-- Textarea -->
-                    <label class="control-label">翻译结果</label> <select id="tolang" name="tolang"></select>
-                    <div class="controls">
-                        <div class="textarea">
-                            <textarea type="" class="" style="width:100%" id="result" readonly="readonly"> </textarea>
-                        </div>
-                    </div>
-                </div>
-
-            </fieldset>
-        </form>
-        <iframe src="" frameborder="0" name="iframeContent" style="display: none;"></iframe>
+        
     </div>
     <script type="text/javascript">
-        $(function () {       
+        $(function () {
             $("iframe[name=iframeContent]").on("load", function () {
                 var responseText = $("iframe")[0].contentDocument.body.getElementsByTagName("pre")[0].innerHTML;
                 $("#result").val(responseText);
-            })              
+            })
 
             $.ajax({
                 type: "GET",
