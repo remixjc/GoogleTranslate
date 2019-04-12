@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.NodeServices;
 using static Web.Common.Common;
 
 namespace Web.Controllers
-{            
+{
     [Route("api/[controller]")]
     [ApiController]
     public class TranslateController : ControllerBase
@@ -19,17 +19,21 @@ namespace Web.Controllers
         {
             _services = services;
         }
-            // GET: api/Translate
-            [HttpGet]
-        public Dictionary<string, string> Get()
+        // GET: api/Translate
+        [HttpGet]
+        public List<Dictionary<string, string>> Get()
         {
+            List<Dictionary<string, string>> list = new List<Dictionary<string, string>>();
             Dictionary<string, string> lang = new Dictionary<string, string>();
             var result = Enum.GetValues(typeof(Language)).OfType<Enum>();
             foreach (var item in result)
             {
-                lang.Add(item.ToString(), Common.Common.GetDescription(item));
+                lang = new Dictionary<string, string>();
+                lang.Add("key", item.ToString());
+                lang.Add("value", Common.Common.GetDescription(item));
+                list.Add(lang);
             }
-            return lang;
+            return list;
         }
 
         // GET: api/Translate/5
@@ -41,11 +45,13 @@ namespace Web.Controllers
 
         // POST: api/Translate
         [HttpPost]
-        public async Task<string> Post([FromForm] string fr)
+        public async Task<string> Post([FromForm] string fr, string lang, string tolang)
         {
             try
             {
-                string result = await Common.Common.Translate(fr, "auto", Common.Common.Language.en_US.ToString(), _services);
+                if (string.IsNullOrEmpty(lang)) lang = Request.Form["lang"];
+                if (string.IsNullOrEmpty(tolang)) tolang = Request.Form["tolang"];
+                string result = await Translate(fr, lang, tolang, _services);
                 return result;
             }
             catch (Exception ex)
