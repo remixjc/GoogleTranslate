@@ -17,7 +17,7 @@ This is GoogleTranslate by translate.google.cn project.
 > 代码内容为通过网络和自己的实践修改来完善的，其中gettk.js知识点比较多，本想着转到C#来写，发现写完后很多算法并不是很容易切换，如果有更好的把这个转换为C#代码的idea，请提交您的代码公开给大家，我也可以从中学习
 
 
-![此处输入图片的描述][1]
+![项目启动图][1]
 
 
-  [1]: http://m.qpic.cn/psb?/V13D6nMn2EJvvI/8LJwaw.fMkPLRUjqxwKnjbfU9uHwqvOLBNUqpwwVu9o!/b/dLYAAAAAAAAA&bo=zASpAgAAAAADB0E!&rf=viewer_4
+  [1]: https://ws1.sinaimg.cn/large/63103a9cly1g235g81x53j20y40ixaaq.jpg
